@@ -1,0 +1,23 @@
+[
+  {
+    "name": "John Rambo",
+    "salary": 800,
+    "increase": false,
+    "rise": true,
+    "id": 1
+  },
+  {
+    "name": "John Dow",
+    "salary": 5000,
+    "increase": false,
+    "rise": true,
+    "id": 2
+  },
+  {
+    "name": "John Malkovich",
+    "salary": 3000,
+    "increase": false,
+    "rise": true,
+    "id": 3
+  }
+]

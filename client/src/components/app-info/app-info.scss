@@ -1,0 +1,9 @@
+@import '../../variables.scss';
+
+.app-info {
+  padding: 25px;
+  background-color: $main-background;
+  border-radius: 4px;
+  box-shadow: $shadow;
+  color: $white;
+}

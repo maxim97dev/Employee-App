@@ -1,0 +1,77 @@
+@import '../../variables.scss';
+
+
+.list-group-item {
+  padding: 15px 20px;
+  border-bottom: 1px solid #009688;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  span {
+    flex-basis: 20%;
+    line-height: 35px;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  input {
+    line-height: 35px;
+    font-size: 20px;
+    text-align: center;
+    border: 0;
+  }
+
+  button {
+    width: 35px;
+    height: 35px;
+    margin: 3px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-cookie {
+    color: $cookie;
+  }
+
+  .btn-trash {
+    color: $trash;
+  }
+
+  .btn-star {
+    color: $star;
+  }
+
+  &.like {
+
+    .fa-star {
+      color: $star-active;
+    }
+
+  }
+
+  // .fa-star {
+  //   width: 35px;
+  //   height: 35px;
+  //   text-align: center;
+  //   line-height: 35px;
+  //   font-size: 16px;
+  //   color: $star;
+  //   transition: 0.3s all;
+  //   transform: translateX(30px);
+  //   opacity: 0;
+  // }
+
+
+
+
+
+  &.increase &-label,
+  &.increase &-input {
+    color: #e09f3e;
+  }
+
+}
