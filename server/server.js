@@ -37,13 +37,12 @@ app.put('/api/user/:id', (req, res) => {
         user = usersData.find(user => user.id === req.params.id),
         updatedUser = req.body;
 
-    user.salary = updatedUser.salary;
-    user.increase = updatedUser.increase;
-    user.rise = updatedUser.rise;
+    // Object.keys(user).forEach(el => user[el] = updatedUser[el]);
+    Object.assign(user, updatedUser);
 
     setTasksToDB(usersData);
 
-    res.status(200).json({status:'Success update user'})
+    res.status(200).json({status:'Update user'})
 
 });
 

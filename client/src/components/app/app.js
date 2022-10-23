@@ -50,6 +50,7 @@ class App extends Component {
             salary,
             increase: false,
             rise: false,
+            currency: '',
             id: uuidv4()
         }
 
@@ -99,19 +100,18 @@ class App extends Component {
         }))
     }
 
-    onChangeSalary = (id, salary) => {
+    onChangeSalary = (id, prop, value) => {
         this.setState(({ data }) => ({
             data: data.map(item => {
                 if (item.id === id) {
-                    this.updateItem({...item, salary: salary});
-                    return {...item, salary: salary}
+                      this.updateItem({...item, [prop]: value});
+                      return {...item, [prop]: value}
                 }
 
                 return item;
             })
         }))
     }
-
 
     searchEmployers = (items, term) => {
         if (!term.length) return items;

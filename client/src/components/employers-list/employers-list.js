@@ -11,8 +11,9 @@ const EmployersList = ({data, onDelete, onToggleProp, onChangeSalary}) => {
                 key={id}
                 {...itemProps}
                 onDelete={() => onDelete(id)}
-                onChangeSalary={e => onChangeSalary(id, e.target.value)}
+                onChangeSalary={e => onChangeSalary(id, e.currentTarget.dataset.name, e.currentTarget.value)}
                 onToggleProp={e => onToggleProp(id, e.currentTarget.dataset.toggle)}
+                onChangeCurr={e => onToggleProp(id, e.target.value)}
             />
         )
     })

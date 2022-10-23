@@ -11,7 +11,7 @@
 
   span {
     flex-basis: 20%;
-    line-height: 35px;
+    align-self: center;
     font-size: 20px;
     text-align: center;
     cursor: pointer;
@@ -30,6 +30,16 @@
     margin: 3px;
     font-size: 17px;
     border: none;
+    cursor: pointer;
+  }
+
+  select {
+    width: 100px;
+    height: 35px;
+    margin: 10px 0;
+    background-color: #f0f0f0;
+    border: 1px solid #0000001f;
+    border-radius: 5px;
     cursor: pointer;
   }
 
@@ -52,22 +62,6 @@
     }
 
   }
-
-  // .fa-star {
-  //   width: 35px;
-  //   height: 35px;
-  //   text-align: center;
-  //   line-height: 35px;
-  //   font-size: 16px;
-  //   color: $star;
-  //   transition: 0.3s all;
-  //   transform: translateX(30px);
-  //   opacity: 0;
-  // }
-
-
-
-
 
   &.increase &-label,
   &.increase &-input {

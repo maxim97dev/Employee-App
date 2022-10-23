@@ -1,9 +1,9 @@
 import './employers-list-item.scss';
 
 const EmployersListItem = (props) => {
-    const {name, salary, onDelete, onToggleProp, onChangeSalary, increase, rise} = props;
+    const {name, salary, onDelete, onToggleProp, onChangeSalary, onChangeCurr, increase, rise, currency} = props;
 
-    let classNames = "list-group-item d-flex flex-column flex-sm-row justify-content-between";
+    let classNames = 'list-group-item d-flex flex-column flex-sm-row justify-content-between';
     if (increase) {
         classNames += ' increase';
     }
@@ -24,16 +24,22 @@ const EmployersListItem = (props) => {
             <input
                 className="list-group-item-input"
                 type="text"
+                data-name="salary"
                 defaultValue={`${salary}`}
                 onKeyDown={inputEnterKeyboard}
                 onBlur={onChangeSalary}/>
             <div className="d-flex justify-content-center align-items-center">
-                <select className="list-group-item-currency">
-                  <option value="$">$</option>
-                  <option value="EUR">EUR</option>
-                  <option value="BYN">BYN</option>
-                  <option value="UAH">UAH</option>
-                  </select>
+            <select
+                className="list-group-item-currency"
+                defaultValue={currency}
+                data-name="currency"
+                onChange={onChangeSalary}
+                >
+                <option value="$">$</option>
+                <option value="EUR">EUR</option>
+                <option value="BYN">BYN</option>
+                <option value="UAH">UAH</option>
+            </select>
             </div>
             <div className="d-flex justify-content-center align-items-center">
                 <button
