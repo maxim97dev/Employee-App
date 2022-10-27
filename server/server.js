@@ -17,50 +17,75 @@ app.use(
 );
 
 app.get('/api/users', (req, res) => {
-    const usersData = getTasksFromDB(req);
+    const usersData = getTasksFromDB('db');
 
     usersData ? res.send(usersData) : res.status(404).send({error: 'Users not found'});
 });
 
 app.post('/api/user', (req, res) => {
-    const usersData = getTasksFromDB(),
+    const usersData = getTasksFromDB('db'),
         user = req.body;
 
     usersData.push(user);
-    setTasksToDB(usersData);
+    setTasksToDB('db', usersData);
 
     res.send(user);
 });
 
 app.put('/api/user/:id', (req, res) => {
-    const usersData = getTasksFromDB(),
+    const usersData = getTasksFromDB('db'),
         user = usersData.find(user => user.id === req.params.id),
         updatedUser = req.body;
 
     // Object.keys(user).forEach(el => user[el] = updatedUser[el]);
     Object.assign(user, updatedUser);
 
-    setTasksToDB(usersData);
+    setTasksToDB('db', usersData);
 
     res.status(200).json({status:'Update user'})
 
 });
 
 app.delete('/api/user/:id', (req, res) => {
-    const usersData = getTasksFromDB(),
+    const usersData = getTasksFromDB('db'),
         updatedData = usersData.filter(user => user.id !== req.params.id);
 
-    setTasksToDB(updatedData);
+    setTasksToDB('db', updatedData);
 
     res.sendStatus(204);
 });
 
-function getTasksFromDB(user) {
-    return JSON.parse(fs.readFileSync('db.json', 'utf8'));
+app.get('/api/currencies', (req, res) => {
+    const currencyData = getTasksFromDB('currencies');
+
+    currencyData ? res.send(currencyData) : res.status(404).send({error: 'Currency not found'});
+});
+
+app.post('/api/currencies', (req, res) => {
+    const currencyData = getTasksFromDB('currencies'),
+        user = req.body;
+
+    currencyData.push(user);
+    setTasksToDB('currencies', currencyData);
+
+    res.send(user);
+});
+
+function getTasksFromDB(database) {
+    return JSON.parse(fs.readFileSync(`${database}.json`, 'utf8'));
 }
 
-function setTasksToDB(tasksData) {
-    fs.writeFileSync('db.json', JSON.stringify(tasksData));
+function setTasksToDB(database, data) {
+    switch (database) {
+        case 'db':
+            fs.writeFileSync(`${database}.json`, JSON.stringify(data));
+            break;
+        case 'currencies':
+            fs.writeFileSync(`${database}.json`, JSON.stringify(data));
+            break;
+        default:
+            break;
+    }
 }
 
 app.listen(3001, () => {

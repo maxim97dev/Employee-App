@@ -1,9 +1,9 @@
 import './employers-list-item.scss';
 
 const EmployersListItem = (props) => {
-    const {name, salary, onDelete, onToggleProp, onChangeSalary, onChangeCurr, increase, rise, currency} = props;
+    const {name, salary, onDelete, onToggleProp, onChangeSalary, increase, rise, currency} = props;
 
-    let classNames = 'list-group-item d-flex flex-column flex-sm-row justify-content-between';
+    let classNames = 'list-group-item d-flex flex-column flex-sm-row align-items-center justify-content-between';
     if (increase) {
         classNames += ' increase';
     }

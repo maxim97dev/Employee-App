@@ -5,10 +5,6 @@
   padding: 15px 20px;
   border-bottom: 1px solid #009688;
 
-  &:last-child {
-    border-bottom: none;
-  }
-
   span {
     flex-basis: 20%;
     align-self: center;
@@ -18,10 +14,10 @@
   }
 
   input {
-    line-height: 35px;
-    font-size: 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1215686275);
     text-align: center;
-    border: 0;
   }
 
   button {
@@ -35,9 +31,9 @@
 
   select {
     width: 100px;
-    height: 35px;
     margin: 10px 0;
-    background-color: #f0f0f0;
+    font-size: 18px;
+    text-align: center;
     border: 1px solid #0000001f;
     border-radius: 5px;
     cursor: pointer;

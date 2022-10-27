@@ -1,0 +1,24 @@
+@import '../../variables.scss';
+
+.app-currency {
+  margin-top: 30px;
+  padding: 25px;
+  background-color: $main-background;
+  border-radius: 4px;
+  box-shadow: $shadow;
+
+  .currency__group {
+    margin-bottom: 10px;
+  }
+
+  input {
+    max-width: 500px;
+    margin: 0 5px;
+  }
+  .currency__item {
+    width: 70px;
+    background-color: #e9ecef;
+    padding: .375rem .75rem;
+  }
+}
+

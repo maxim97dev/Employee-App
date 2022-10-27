@@ -6,6 +6,7 @@ import SearchPanel from "../search-panel/search-panel";
 import AppFilter from "../app-filter/app-filter";
 import EmployersList from "../employers-list/employers-list";
 import EmployersAddForm from "../employers-add-form/employers-add-form";
+import AppCurrency from "../app-currency/app-currency";
 
 import './app.css';
 
@@ -15,12 +16,47 @@ class App extends Component {
         this.state = {
             data: [],
             term: '',
-            filter: 'all'
+            filter: 'all',
+            currencies: [
+                {name: 'RUB', rate: 1 },
+                {name: 'USD', rate: 0.013433637829124127 },
+                {name: 'EUR', rate: 0.011065619121389841 },
+                {name: 'UAH', rate: 0.0123123123 }
+            ]
         }
     }
 
+
     componentDidMount() {
         this.getItems();
+        this.getCurrencies();
+    }
+
+    getCurrencies = () => {
+        const url = 'https://www.nbrb.by/api/exrates/rates?periodicity=0';
+
+        fetch(url)
+            .then(res => res.json())
+            .then(curr => {
+                let currencies = curr.map(item => {
+                    return {'name': item['Cur_Abbreviation'], 'rate': item['Cur_OfficialRate']}
+                });
+                console.log(currencies);
+                this.setState ({ currencies });
+            })
+            .catch(error => console.log('error', error));
+    }
+
+    updateCurrencies = (currencies) => {
+        fetch(`http://${window.location.hostname}:3001/api/currencies`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(currencies)
+        })
+        .then(res => res.json())
+        .catch(error => console.log('error', error));
     }
 
     getItems = () => {
@@ -142,6 +178,7 @@ class App extends Component {
 
     render() {
         const {data, term, filter} = this.state;
+        const currencies = this.state.currencies;
         const employees = this.state.data.length;
         const increased = this.state.data.filter(item => item.increase).length;
         const visibleData = this.filterPost(this.searchEmployers(data, term), filter);
@@ -167,7 +204,8 @@ class App extends Component {
                     onChangeSalary={this.onChangeSalary}
                     onToggleProp={this.onToggleProp}
                 />
-                <EmployersAddForm onAdd={this.addItem}/>
+                <EmployersAddForm onAdd={this.addItem} />
+                <AppCurrency currencies={currencies}/>
             </div>
         );
     }
