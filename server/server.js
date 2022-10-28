@@ -83,7 +83,8 @@ function setTasksToDB(database, data) {
         case 'currencies':
             let json = getTasksFromDB(database);
 
-            let result = json.map(item => ({...item, data}));
+            // let result = json.map(item => ({...item, data}));
+            let result = Object.assign(json, data);
 
             fs.writeFileSync(`${database}.json`, JSON.stringify(result));
             break;
