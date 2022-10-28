@@ -81,7 +81,11 @@ function setTasksToDB(database, data) {
             fs.writeFileSync(`${database}.json`, JSON.stringify(data));
             break;
         case 'currencies':
-            fs.writeFileSync(`${database}.json`, JSON.stringify(data));
+            let json = getTasksFromDB(database);
+
+            let result = json.map(item => ({...item, data}));
+
+            fs.writeFileSync(`${database}.json`, JSON.stringify(result));
             break;
         default:
             break;
@@ -90,4 +94,4 @@ function setTasksToDB(database, data) {
 
 app.listen(3001, () => {
     console.log('Server started');
-})
+});
