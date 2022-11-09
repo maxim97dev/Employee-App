@@ -30,6 +30,7 @@ class App extends Component {
     componentDidMount() {
         this.getItems();
         this.getCurrencies();
+        // this.updateCurrencies();
     }
 
     getCurrencies = () => {
@@ -49,14 +50,17 @@ class App extends Component {
 
     updateCurrencies = (currencies) => {
         fetch(`http://${window.location.hostname}:3001/api/currencies`, {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(currencies)
         })
-        .then(res => res.json())
-        .catch(error => console.log('error', error));
+            .then(res => res.json())
+            .then(currencies => {
+                this.setState ({ currencies });
+            })
+            .catch(error => console.log('error', error));
     }
 
     getItems = () => {

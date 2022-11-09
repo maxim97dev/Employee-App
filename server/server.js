@@ -65,10 +65,11 @@ app.post('/api/currencies', (req, res) => {
     const currencyData = getTasksFromDB('currencies'),
         user = req.body;
 
-    currencyData.push(user);
+    Object.assign(currencyData, user);
     setTasksToDB('currencies', currencyData);
 
-    res.send(user);
+    // res.send(user);
+    currencyData ? res.send(currencyData) : res.status(404).send({error: 'Currency not found'});
 });
 
 function getTasksFromDB(database) {
@@ -81,12 +82,7 @@ function setTasksToDB(database, data) {
             fs.writeFileSync(`${database}.json`, JSON.stringify(data));
             break;
         case 'currencies':
-            let json = getTasksFromDB(database);
-
-            // let result = json.map(item => ({...item, data}));
-            let result = Object.assign(json, data);
-
-            fs.writeFileSync(`${database}.json`, JSON.stringify(result));
+            fs.writeFileSync(`${database}.json`, JSON.stringify(data));
             break;
         default:
             break;

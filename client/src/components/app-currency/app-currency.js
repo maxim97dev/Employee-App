@@ -24,8 +24,9 @@ class AppCurrency extends Component {
 
         return (
             <div className="app-currency">
+                <h3>Конвертер валют</h3>
                 {this.props.currencies.map(n => (
-                    <div key={n.name} className="currency__group d-flex align-items-center">
+                    <div key={n.name} className="currency__group d-flex align-items-stretch">
                         <input
                             type="text"
                             name="code"
@@ -34,7 +35,7 @@ class AppCurrency extends Component {
                             className="form-control"
                             onChange={this.onValueChange}
                         />
-                        <div className="currency__item">
+                        <div className="currency__item justify-content-center">
                             <span className="currency__item-text">{n.name}</span>
                         </div>
                     </div>
